@@ -2,8 +2,13 @@
 snipmate.vim
 ============
 
+IMPORTANT: comment on: [What about merging whith Ultisnip using its engine](https://github.com/garbas/vim-snipmate/issues/114)
+status: snipmate-snippet files are read by Ultisnip flawlessly. See
+snipmate-snippets readme about how to configure and use Ultisnips as alternative
+
+
 :Author: `Michael Sanders`_
-:Maintainer: `Rok Garbas`_
+:Maintainer: `Rok Garbas`_ & `Marc Weber`_
 :Homepage: http://www.vim.org/scripts/script.php?script_id=2540
 :Contributors: `MarcWeber`_, `lilydjwg`_, `henrik`_, `steveno`_, `asymmetric`_, `jherdman`_, `ironcamel`_, `honza`_, `jb55`_, `robhudson`_, `kozo2`_, `MicahElliott`_, `darkwise`_, `redpill`_, `thisgeek`_, `sickill`_, `pose`_, `marutanm`_, `r00k`_, `jbernard`_, `holizz`_, `muffinresearch`_, `statik`_, `taq`_, `alderz`_, `pielgrzym`_
 
@@ -56,9 +61,8 @@ Changelog
 
     * From below mentioned merges I must specially mention `MarcWeber`_'s patch
       which brought quite a few functionalities/improvements:
-        - snippets are loaded lazily.
-        - snippets are no longer cached. Thus you always get the snippets you
-          just wrote to a file without reloading anything.
+        - snippets are loaded lazily and they are cached. Recaching takes place
+          automatically when file's timestamp changes
         - When visually selecting a snippet in a .snippets file you can press
           <cr> to replace spaces by tabs automatically in a smart way.
       Big +1 to `MarcWeber`_ for this. Important to note is that we now depend
@@ -106,12 +110,11 @@ Important to note is that since version 1.0 we depend on 2 vim plugins:
 Using `VAM`_ (recommended)
 ------------
 
-::
+- Add `snipmate-snippets` to the names to be installed. Or use
+  "github:name/repo" if you want to use a non standard upstream.
 
-    Add snipmate-snippets to the names to be installed. Or use
-    "github:name/repo" if you want to use a non standard upstream.
-    The default snippets depend on "snipmate" so VAM will fetch the core along
-    with its dependencies automatically
+The default snippets depend on "snipmate" so VAM will fetch the core along
+with its dependencies automatically.
 
 Using `pathogen`_
 --------------------------------------
@@ -172,13 +175,13 @@ We also encourage people to maintain sets of snippets for particular use cases
 so that all users can benefit from them.  People can list their snippet repositories here:
 
      * https://github.com/rbonvall/snipmate-snippets-bib (snippets for BibTeX files)
+     * https://github.com/sudar/vim-arduino-snippets (snippets for Arduino files)
+     * https://github.com/zedr/zope-snipmate-bundle.git (snippets for Python, TAL and ZCML)
 
 Installation using VAM: "github:rbonvall/snipmate-snippets-bib"
 
 Why forking snipMate?
 =====================
-
-::
 
     After several unsuccessful attempts of contacting Michael Sanders, no
     commits in last half year and long pull request line on github (none of
@@ -197,17 +200,21 @@ Why forking snipMate?
     Maybe I will only maintain it for a while until Michael Sanders takes things
     back into his hand or until some other super-hero shows up.
 
-    Tnx and happy snipmating, Rok Garbas, 2011-02-02
+    Tnx and happy snipmating, Rok Garbas & Marc Weber, 2011-02-02
 
 
+
+related work
+=============
+See doc/snipMate.txt
 
 Known Bugs
 =============
 
-
     * Set one value default as input of another value.
       https://github.com/garbas/vim-snipmate/issues/59
       [2011-10-18, `bogdan`_]
+
 
 TODO / Future
 =============
@@ -230,8 +237,16 @@ TODO / Future
       If you volunteer tell me so that I can reference the link.
       [2011-02-02, `MarcWeber`_]
 
+    * tcomment claims to know which language mode you're editing in even if its
+      JS in PHP or HTML within PHP. It would be great if that functionality could be
+      moved into its own plugirn (vim-detect-language-at-cursor) or such.
+      Then a lot of the scoped_aliases (which causes collisions easily) could
+      be enhanced.
+
+
 .. _`Michael Sanders`: http://www.vim.org/account/profile.php?user_id=16544
 .. _`Rok Garbas`: rok@garbas.si
+.. _`Marc Weber`: marco-oweber@gmx.de
 .. _`VAM`: https://github.com/MarcWeber/vim-addon-manager
 .. _`pathogen`: http://www.vim.org/scripts/script.php?script_id=2332
 .. _`vim-addon-mw-utils`: https://github.com/MarcWeber/vim-addon-mw-utils
